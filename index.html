@@ -1,0 +1,196 @@
+<html>
+    <head>
+        <title>Financial statements maker</title>
+
+        <style>
+            .class{
+                color:#125c58;
+                text-align: center;
+                border :0;
+                box-shadow:0 2px 6px 0;  
+            }
+
+            body{
+                background-color: #e5efee;
+            }
+
+            td{
+                padding-right:250px;
+                color:rgb(89, 88, 88);
+            }
+
+            .h{
+                background-color:#125c58;
+                color:#e5efee;
+              
+            }
+
+            .btn{
+                margin-right:250px;
+                border-color:#125c58b1;
+                color:#125c58b1;
+                background:#e5efee;
+                border-radius:25px;
+                box-shadow: 0 2px 6px 0 ;
+            }
+
+            .btn:hover{
+
+                box-shadow:inset 0 2px 6px 0;
+            }
+
+            label{
+                color:rgb(89, 88, 88);
+            }
+
+           .in{
+            box-shadow: 0 2px 6px 0 ;
+            border-color:#125c58b1;
+            border-radius:25px;
+            color:#125c58;
+           }
+           
+        </style>
+
+    </head>
+    <body>
+        <br>
+            <p class="class"> <strong><span id="company name"></span></strong><br>  Income statement <br><span id="date"></span></p> 
+
+                <br>
+                    <p id="rev" class="h"> &nbsp;&nbsp; Revenues</p>
+                    <p > <input type="text" name="Revenue" id="rev_txt" placeholder = " Enter revenue"  class="in" onfocus="this.value=''"> <input type="number" name="value" id="rev_value" placeholder = " Enter value"  class="in" onfocus="this.value=''"> <input type="button" value="Add revenue" id="rev_button" class="btn" ></p>
+                            
+                            <table id="rev_table">  </table>
+                        
+                                <br><br>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="button" id="total rev button" value="Total revenues" class="btn" > <label id="print total rev"></label>
+                                    
+                                    <br><br>
+                                    <p id="Exp" class="h">&nbsp;&nbsp; Expenses</p>
+                                    <p >  <input type="text" name="Expenses" id="exp_txt" placeholder =" Enter expense " class="in" onfocus="this.value=''"> <input type="number" name="value" id="exp_value" placeholder = " Enter value"  class="in" onfocus="this.value=''"> <input type="button" value="Add expenses" id="exp_button" class="btn"></p>
+                
+
+                            <table id="exp_table"> </table>
+                
+                                <br><br>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="button" id="total exp button" value="Total expenses" class="btn" > <label id="print total exp"></label>
+                    
+                    
+                                    <br><br><br> 
+                                    <input type="button" id="net" value="Net income" class="btn" > <label id="net_print" style="color:rgb(239, 133, 33)"></label>
+
+                                    <!--
+                                        TODO: 
+                                        - add total revenue & expenses buttons       *done
+                                        - Redesign color for revenue & expenses     *done
+                                        - Counter for revenue & expenses buttons     *done
+                                        - Varibale to store net income value        *done
+                                        - Edit total revenue & expenses value's positions *done
+                                        - add company name field  *done
+                                        - Watch the video about CSS  --delete 
+
+                                    --> 
+        
+       
+        <script>
+            var c = window.prompt("Please enter a company name:");
+            document.getElementById("company name").innerHTML=c;
+
+            var d = window.prompt("Please enter the date:");
+            document.getElementById("date").innerHTML=d;
+
+
+            var rev_sum=0;
+            var exp_sum=0;
+            var net=0;
+    
+           function start(){
+               document.getElementById("rev_button").addEventListener("click",add_revenue,false);
+               document.getElementById("exp_button").addEventListener("click",add_expenses,false);
+               document.getElementById("total rev button").addEventListener("click",total_rev,false);
+               document.getElementById("total exp button").addEventListener("click",total_exp,false);
+               document.getElementById("net").addEventListener("click",net_income,false);
+                   
+               
+           }
+    
+           function add_revenue(){
+              
+                //Adding revenue txt
+                   var txt = document.getElementById("rev_txt").value;
+                   var table = document.getElementById("rev_table");
+                   var tr = document.createElement("tr");
+                   var td = document.createElement("td");
+                   td.innerHTML=txt;
+                   tr.appendChild(td);
+                   table.appendChild(tr);
+    
+                //Adding revenue value
+                   var value = parseInt(document.getElementById("rev_value").value);
+                   var table = document.getElementById("rev_table");
+                   //var tr = document.createElement("tr");
+                   var td = document.createElement("td");
+                   td.innerHTML=value;
+                   tr.appendChild(td);
+                   table.appendChild(tr);
+    
+               //Total revenue 
+              
+               rev_sum+=value;
+              
+    
+           }
+    
+           function add_expenses(){
+    
+              //Adding expenses txt 
+                   var txt = document.getElementById("exp_txt").value;
+                   var table = document.getElementById("exp_table");
+                   var tr = document.createElement("tr");
+                   var td = document.createElement("td");
+                   td.innerHTML=txt;
+                   tr.appendChild(td);
+                   table.appendChild(tr);
+    
+               //Adding expenses value
+                   var value = parseInt(document.getElementById("exp_value").value);
+                   var table = document.getElementById("exp_table");
+                   //var tr = document.createElement("tr");
+                   var td = document.createElement("td");
+                   td.innerHTML=value;
+                   tr.appendChild(td);
+                   table.appendChild(tr);
+    
+               //Total expenses
+                   exp_sum+=value;
+    
+           }
+    
+           function total_rev(){
+              
+               document.getElementById("print total rev").innerHTML=rev_sum;
+    
+           }
+    
+           function total_exp(){
+               
+               document.getElementById("print total exp").innerHTML=exp_sum;
+           
+           }
+    
+           function net_income(){
+            
+               net = rev_sum - exp_sum;
+               document.getElementById("net_print").innerHTML=net+" JD";
+           }
+    
+                window.addEventListener("load",start,false);
+               
+    
+       </script>
+    </body>
+    
+</html>
