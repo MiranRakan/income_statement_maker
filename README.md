@@ -1,1 +1,2 @@
 # income_statement_maker
+A simple online tool using HTML, CSS, and JavaScript to assist small corporations in creating income statements. The tool enables users to input revenues and expenses, calculates the totals for each category, and displays them to the user. Additionally, it calculates the net income for the user. This project served as a practical application of my knowledge gained in both accounting and web development courses.
